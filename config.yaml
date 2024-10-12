@@ -1,0 +1,55 @@
+name: FC-Admin-Server-Go            #应用名称
+version: 1.0.0                      #版本
+debug: true                         #是否debug版本
+server:
+  httpPort: 1236                         #端口号，要和下面的domainName保持一直
+  domainName: http://127.0.0.1:1236/     #程序的域名，本地服务器地址，端口号要和上面的httpPort保持一致
+  readTimeout: 60                        #读取超时时间
+  writeTimeout: 60                       #写入超时时间
+  requestSign: z7E8rJp5zkir7kmn          #网络请求加密密钥
+  passwordSign: f0GGjyA3yfJYcbGE         #密码加密密钥
+  pageSize: 20                           #分页每页返回的size
+  runtimeRootPath: runtime/              #保存文件的根路径
+  imageSavePath: documents/images/       #图片路径
+  imageMaxSize: 1                        #图片最大尺寸，单位（M）
+  imageAllowExts: [.jpg,.jpeg,.png,.gif,.webp,.JPG,.JPEG,.PNG,]  #允许上传图片的格式
+  videoSavePath: documents/videos/       #视频路径
+  videoMaxSize: 50                       #视频最大尺寸，单位（M）
+  videoAllowExts: [.mp4,ogg,flv,avi,wmv,rmvb,mov]               #视频允许的格式
+  apkSavePath: documents/apks/           #apk文件路径
+  apkAllowExt: .apk                      #apk文件格式
+  appStoreUrl:                           #iOS应用在App Store中的地址，用于版本更新
+  timeFormat: 20060102                   #时间相关
+
+token:
+  secret: 298221$29012               #用户JWT密钥
+  accountExpireTime: 20              #账户aToken失效时间，单位分钟
+  refreshExpireTime: 1440            #refresh_token失效时间，单位分钟,
+  refreshAutoExpireTime: 10080       #免登录了token失效时间，单位分钟,n日内免登录使用
+  unique: false                      #是否做同端唯一登录
+
+zap:
+  infoFilename: ./runtime/logs/info.log    #打印信息日志存放路径
+  errorFilename: ./runtime/logs/error.log  #打印错误日志存放路径
+  panicFilename: ./runtime/logs/panic.log  #打印崩溃日志存放路径
+  fatalFilename: ./runtime/logs/fatal.log  #打印崩溃日志存放路径
+  maxSize: 10       #文件最大内存
+  maxBackups: 100   #最大备份数
+  maxAge: 30        #保存最大天数
+
+database:
+  user: root                              #数据库账号
+  password: 123456789                     #数据库密码
+  host: 127.0.0.1:3306                    #数据库地址+端口号
+  name: fc_admin                          #数据库名称
+  tablePrefix: fc_                        #数据库表名称前缀
+  MaxIdleConnects: 10                     #设置空闲时的最大连接数
+  MaxOpenConnects: 100                    #设置数据库的最大打开连接数
+
+redis:
+  redisNetwork: tcp
+  redisHost: 127.0.0.1:6379      #redis地址
+  redisPassword: 123456          #redis密码
+  maxIdle: 30                    #最大空闲连接数
+  maxActive: 30                  #在给定时间内，允许分配的最大连接数（当为零时，没有限制）
+  idleTimeout: 200               #在给定时间内将会保持空闲状态，若到达时间限制则关闭连接（当为零时，没有限制）
